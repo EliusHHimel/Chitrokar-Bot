@@ -1,15 +1,11 @@
 from email.mime import image
-import requests
 import discord
 from decouple import config
 
 from features import Colorizer, Text2Img, CatDogImage
 
-# Import private bot token and api key from environment variable
+# Import private bot token from environment variable
 TOKEN = config('TOKEN')
-API_KEY = config('API_KEY')
-
-print(Colorizer)
 
 
 class MyClient(discord.Client):
@@ -21,11 +17,6 @@ class MyClient(discord.Client):
     # Get message from user and react to the command
     async def on_message(self, message):
         print(f'Message from {message.author}: {message.content}')
-        # print('--------------------')
-        # print(message)
-        # print('--------------------')
-        # print(message.attachments[0].url)
-        # print('--------------------')
 
         # Generate text 2 image
 
