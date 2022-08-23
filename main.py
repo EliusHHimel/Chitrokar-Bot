@@ -3,7 +3,7 @@ import requests
 import discord
 from decouple import config
 
-from features import Colorizer
+from features import Colorizer, Text2Img
 
 # Import private bot token and api key from environment variable
 TOKEN = config('TOKEN')
@@ -30,43 +30,10 @@ class MyClient(discord.Client):
         # print('--------------------')
 
         # Generate text 2 image
-        if message.content.startswith('$ako'):
-            args = message.content.split('$ako ')
-            query = args[1]
 
-            response = requests.post('https://api.deepai.org/api/text2img',
-                                     headers={'api-key': API_KEY}, data={
-                                         'text': {query},
-                                     }).json()
-            print(response)
-
-            # Try if it shows an error then it will show the error message, otherwise it will show the output
-            try:
-                await message.reply(response['status'])
-
-            except (KeyError, NameError, AttributeError) as e:
-                await message.reply(response['output_url'])
-
-        await Colorizer.imgColorizer(message)
-
+        await Text2Img.text2img(message)
         # Image colorizer feature
-        # if 'chitrokar' or 'colorize' in message.channel.name:
-        #     photoURL = message.attachments[0].url
-        #     response = requests.post(
-        #         "https://api.deepai.org/api/colorizer",
-        #         data={
-        #             'image': photoURL,
-        #         },
-        #         headers={'api-key': API_KEY}
-        #     ).json()
-
-        #     print(response)
-
-        #     try:
-        #         await message.reply(response['status'])
-
-        #     except (KeyError, NameError, AttributeError) as e:
-        #         await message.reply(response['output_url'])
+        await Colorizer.imgColorizer(message)
 
 
 intents = discord.Intents.default()
