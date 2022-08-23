@@ -2,7 +2,7 @@ from email.mime import image
 import discord
 from decouple import config
 
-from features import Colorizer, Text2Img, CatDogImage, WebCapture
+from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove
 
 # Import private bot token from environment variable
 TOKEN = config('TOKEN')
@@ -30,6 +30,9 @@ class MyClient(discord.Client):
 
         # Web Capture
         await WebCapture.webCap(message)
+
+        # Photo background remove
+        await BGRemove.removeBG(message)
 
 
 intents = discord.Intents.default()
