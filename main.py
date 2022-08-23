@@ -1,10 +1,15 @@
+from email.mime import image
 import requests
 import discord
 from decouple import config
 
+from features import Colorizer
+
 # Import private bot token and api key from environment variable
 TOKEN = config('TOKEN')
 API_KEY = config('API_KEY')
+
+print(Colorizer)
 
 
 class MyClient(discord.Client):
@@ -42,24 +47,26 @@ class MyClient(discord.Client):
             except (KeyError, NameError, AttributeError) as e:
                 await message.reply(response['output_url'])
 
+        await Colorizer.imgColorizer(message)
+
         # Image colorizer feature
-        if 'chitrokar' or 'colorize' in message.channel.name:
-            photoURL = message.attachments[0].url
-            response = requests.post(
-                "https://api.deepai.org/api/colorizer",
-                data={
-                    'image': photoURL,
-                },
-                headers={'api-key': API_KEY}
-            ).json()
+        # if 'chitrokar' or 'colorize' in message.channel.name:
+        #     photoURL = message.attachments[0].url
+        #     response = requests.post(
+        #         "https://api.deepai.org/api/colorizer",
+        #         data={
+        #             'image': photoURL,
+        #         },
+        #         headers={'api-key': API_KEY}
+        #     ).json()
 
-            print(response)
+        #     print(response)
 
-            try:
-                await message.reply(response['status'])
+        #     try:
+        #         await message.reply(response['status'])
 
-            except (KeyError, NameError, AttributeError) as e:
-                await message.reply(response['output_url'])
+        #     except (KeyError, NameError, AttributeError) as e:
+        #         await message.reply(response['output_url'])
 
 
 intents = discord.Intents.default()
