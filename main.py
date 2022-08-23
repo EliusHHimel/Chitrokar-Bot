@@ -1,24 +1,19 @@
-
-from discord.ext import commands
 import requests
-from requests import request
 import discord
-import os
-
 from decouple import config
 
+# Import private bot token and api key from environment variable
 TOKEN = config('TOKEN')
 API_KEY = config('API_KEY')
 
-# token = os.getenv('TOKEN')
-# apiKey = os.getenv('API_KEY')
-print(TOKEN, API_KEY)
-
 
 class MyClient(discord.Client):
+
+    # Shows if the bot is ready to work in terminal
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
 
+    # Get message from user and react to the command
     async def on_message(self, message):
         print(f'Message from {message.author}: {message.content}')
 
@@ -27,23 +22,21 @@ class MyClient(discord.Client):
             query = args[1]
 
             response = requests.post('https://api.deepai.org/api/text2img',
-                                     headers={'api-key': 'quickstart-QUdJIGlzIGNvbWluZy4uLi4K'}, data={
+                                     headers={'api-key': API_KEY}, data={
                                          'text': {query},
                                      }).json()
             print(response)
+
+            # Try if it shows an error then it will show the error message, otherwise it will show the output
             try:
-                if (response['status']):
-                    await message.reply(response['status'])
+                await message.reply(response['status'])
 
             except (KeyError, NameError, AttributeError) as e:
                 await message.reply(response['output_url'])
-
-            # else:
-            #     await message.reply(response['output_url'])
 
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
-client.run(TOKEN)
+client.run(TOKEN)  # Run the client
