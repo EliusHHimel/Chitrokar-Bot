@@ -3,7 +3,7 @@ import requests
 import discord
 from decouple import config
 
-from features import Colorizer, Text2Img
+from features import Colorizer, Text2Img, CatDogImage
 
 # Import private bot token and api key from environment variable
 TOKEN = config('TOKEN')
@@ -32,6 +32,10 @@ class MyClient(discord.Client):
         await Text2Img.text2img(message)
         # Image colorizer feature
         await Colorizer.imgColorizer(message)
+
+        # search random dog and cat image
+        await CatDogImage.dog(message)
+        await CatDogImage.cat(message)
 
 
 intents = discord.Intents.default()
