@@ -6,7 +6,7 @@ API_KEY = config('API_KEY')
 
 async def imgColorizer(message):
     # Image colorizer feature
-    if 'chitrokar' or 'colorize' in message.channel.name:
+    if message.content.startswith('$col'):
         photoURL = message.attachments[0].url
         response = requests.post(
             "https://api.deepai.org/api/colorizer",

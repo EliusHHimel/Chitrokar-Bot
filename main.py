@@ -26,8 +26,6 @@ class MyClient(discord.Client):
         # print('--------------------')
         # print(message.attachments[0].url)
         # print('--------------------')
-        # print(message.type)
-        # print('--------------------')
 
         # Generate text 2 image
 
