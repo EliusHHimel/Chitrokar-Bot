@@ -26,6 +26,8 @@ $ako amazing city in space
 - Black & White image to Colorful image
 <br>
 ```$col```
+<br>
+
 ![Baby with a Teddy black and white picture](images/baby-with-teddy.jpg)
 
 - Full Page Webpage Capture
@@ -35,9 +37,11 @@ $wcap eliushhimel.com
 
 - Photo background remover
 <br>
+
 ```
 $bgx
 ```
+
 ![a man smiling picture](images/man-photo.jpg)
 
 - Get random cat and dog pictures.
