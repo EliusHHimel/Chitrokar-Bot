@@ -37,7 +37,6 @@ $wcap eliushhimel.com
 ```
 
 - Photo background remover
-<br>
 
 ```
 $bgx
