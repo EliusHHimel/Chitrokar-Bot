@@ -1,8 +1,9 @@
 from email.mime import image
+from pyexpat.errors import messages
 import discord
 from decouple import config
 
-from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme
+from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme, Help
 
 # Import private bot token from environment variable
 TOKEN = config('TOKEN')
@@ -39,6 +40,10 @@ class MyClient(discord.Client):
 
         # Get random meme
         await meme.getMeme(message)
+
+        # Help command
+        await Help.help(message)
+
 
 intents = discord.Intents.default()
 intents.message_content = True
