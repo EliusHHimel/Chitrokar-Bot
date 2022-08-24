@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 from PIL import Image, ImageOps
+from glitch_this import ImageGlitcher
 
 
 def vignette(image, saveas, opacity):
@@ -42,7 +43,7 @@ def negative_effect(filename, saveas):
 
 def rainffects(image, blurtype, bluropacity, saveas):
     road = cv2.imread(image)
-    raineffected = cv2.imread("raineffect.png")
+    raineffected = cv2.imread("images/raineffect.png")
     pascal = (road.shape[1], road.shape[0])
     raineffected_rush = cv2.resize(raineffected, pascal)
     hola = cv2.add(raineffected_rush, road)
@@ -71,6 +72,26 @@ def textureadd(image, texture, src_weight, src2_weight, saveas):
     cv2.imwrite(saveas, blend)
 
 
+img = Image.open(r'png_to_gif.gif')
+glitcher = ImageGlitcher()
+glitch_img, src_gif_duration, src_gif_frames = glitcher.glitch_gif(
+    img, 4, color_offset=True)
+
+DURATION = 200      # Set this to however many centiseconds each frame should be visible for
+LOOP = 0            # Set this to how many times the gif should loop
+# LOOP = 0 means infinite loop
+
+# You could also use the `src_gif_duration` returned by `glitch_gif`
+# To keep the GIF exactly the same duration wise
+
+glitch_img[0].save(r'glitcharts.gif',
+                   format='GIF',
+                   append_images=glitch_img[1:],
+                   save_all=True,
+                   duration=DURATION,
+                   loop=LOOP)
+
+
 # """
 # rainffects("keerthy.jpg","vertical",10,"effects/hvarticalrain.jpg")
 # rainffects("keerthy.jpg","horizontal",7,"effects/horizontal.jpg")
@@ -81,4 +102,4 @@ def textureadd(image, texture, src_weight, src2_weight, saveas):
 
 # """
 
-posterize_effect("images/man-photo.jpg", "output.jpg")
+rainffects("images/baby-with-teddy.jpg", "horizontal", 10, "output.jpg")

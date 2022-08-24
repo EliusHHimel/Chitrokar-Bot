@@ -1,5 +1,6 @@
 import requests
 from decouple import config
+import discord
 
 UNSPLASH_CLIENT_ID = config('UNSPLASH_CLIENT_ID')
 
@@ -13,10 +14,11 @@ async def searchPhoto(message):
             "Authorization": "Client-ID " + UNSPLASH_CLIENT_ID
         }).json()
 
-        print(photos['results'])
-
         i = 0
         while i < 5:
             i += 1
-            await message.reply("Photo by: " + photos['results'][i]['user']['name'] + ' on Unsplash')
-            await message.reply(photos['results'][i]['urls']["full"])
+            embedVar = discord.Embed(
+                title=query.capitalize(), description="Photo by: "+'['+photos['results'][i]['user']['name']+']('+photos['results'][i]['user']['links']['html']+')'+' on [Unsplash](https://unsplash.com/)', color=0x552E12)
+
+            embedVar.set_image(url=photos['results'][i]['urls']["raw"])
+            await message.reply(embed=embedVar)
