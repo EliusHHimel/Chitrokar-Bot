@@ -63,14 +63,16 @@ First write `$cat` or  `$dog` and hit enter.
 
 Example:
 
-    - Cat picture
-    ```
-    $cat
-    ```
-    - Dog Picture
-    ```
-    $dog
-    ```
+- Cat picture
+ 
+```
+$cat
+```
+- Dog Picture
+
+```
+$dog
+```
 
 - Search for free images from unsplash
 
