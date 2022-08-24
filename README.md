@@ -62,6 +62,7 @@ $bgx
 First write `$cat` or  `$dog` and hit enter.
 
 Example:
+
     - Cat picture
     ```
     $cat
