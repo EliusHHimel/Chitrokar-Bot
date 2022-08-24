@@ -6,9 +6,6 @@ import asyncio
 
 from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme, Help
 
-PREFIX = ("$")
-bot = commands.Bot(command_prefix=PREFIX, description='Hi',
-                   intents=discord.Intents.default())
 
 # Import private bot token from environment variable
 TOKEN = config('TOKEN')
