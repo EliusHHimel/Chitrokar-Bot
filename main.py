@@ -1,9 +1,14 @@
-from email.mime import image
-from pyexpat.errors import messages
 import discord
 from decouple import config
+from discord.ext.commands import Bot
+from discord.ext import commands
+import asyncio
 
 from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme, Help
+
+PREFIX = ("$")
+bot = commands.Bot(command_prefix=PREFIX, description='Hi',
+                   intents=discord.Intents.default())
 
 # Import private bot token from environment variable
 TOKEN = config('TOKEN')
@@ -14,6 +19,8 @@ class MyClient(discord.Client):
     # Shows if the bot is ready to work in terminal
     async def on_ready(self):
         print(f'Logged on as {self.user}!')
+        # Change the bot status
+        await client.change_presence(activity=discord.Activity(type=discord.ActivityType.listening, name='$help'))
 
     # Get message from user and react to the command
     async def on_message(self, message):
