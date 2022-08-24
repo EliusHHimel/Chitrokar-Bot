@@ -5,8 +5,8 @@ UNSPLASH_CLIENT_ID = config('UNSPLASH_CLIENT_ID')
 
 
 async def searchPhoto(message):
-    if message.content.startswith('!upic'):
-        query = message.content.split('!upic ')[1]
+    if message.content.startswith('$upic'):
+        query = message.content.split('$upic ')[1]
         url = "https://api.unsplash.com//search/photos?query=" + \
             query
         photos = requests.get(url, headers={
