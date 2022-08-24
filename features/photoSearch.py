@@ -18,7 +18,11 @@ async def searchPhoto(message):
         while i < 5:
             i += 1
             embedVar = discord.Embed(
-                title=query.capitalize(), description="Photo by: "+'['+photos['results'][i]['user']['name']+']('+photos['results'][i]['user']['links']['html']+')'+' on [Unsplash](https://unsplash.com/)', color=0x552E12)
+                title=None, description=None, color=0x552E12)
 
             embedVar.set_image(url=photos['results'][i]['urls']["raw"])
+            embedVar.set_author(name=photos['results'][i]['user']['name'], url=photos['results'][i]['user']
+                                ['links']['html'], icon_url=photos['results'][i]['user']['profile_image']['large'])
             await message.reply(embed=embedVar)
+
+#"Photo by: "+'['+photos['results'][i]['user']['name']+']('+photos['results'][i]['user']['links']['html']+')'+' on [Unsplash](https://unsplash.com/)'
