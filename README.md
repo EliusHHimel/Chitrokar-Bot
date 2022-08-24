@@ -24,9 +24,10 @@ It has some rich featurs
 $ako amazing city in space
 ```
 - Black & White image to Colorful image
-<br>
-```$col```
-<br>
+
+```
+$col
+```
 
 ![Baby with a Teddy black and white picture](images/baby-with-teddy.jpg)
 
