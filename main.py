@@ -2,7 +2,7 @@ from email.mime import image
 import discord
 from decouple import config
 
-from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch
+from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme
 
 # Import private bot token from environment variable
 TOKEN = config('TOKEN')
@@ -37,6 +37,8 @@ class MyClient(discord.Client):
         # Get photo from unsplash
         await photoSearch.searchPhoto(message)
 
+        # Get random meme
+        await meme.getMeme(message)
 
 intents = discord.Intents.default()
 intents.message_content = True
