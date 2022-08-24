@@ -49,7 +49,7 @@ $wcap eliushhimel.com
 
 - Photo background remover.
 
-First write `$bgx` as command and then choose your photo from your computer that you want to colorize and send.
+First write `$bgx` as command and then choose your photo from your computer and send.
 Example:
 
 ```
