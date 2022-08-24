@@ -23,6 +23,8 @@ async def searchPhoto(message):
             embedVar.set_image(url=photos['results'][i]['urls']["raw"])
             embedVar.set_author(name=photos['results'][i]['user']['name'], url=photos['results'][i]['user']
                                 ['links']['html'], icon_url=photos['results'][i]['user']['profile_image']['large'])
+            embedVar.set_footer(
+                text='Photo from: Unsplash', icon_url='https://cdn-icons-png.flaticon.com/512/5968/5968743.png')
             await message.reply(embed=embedVar)
 
 #"Photo by: "+'['+photos['results'][i]['user']['name']+']('+photos['results'][i]['user']['links']['html']+')'+' on [Unsplash](https://unsplash.com/)'
