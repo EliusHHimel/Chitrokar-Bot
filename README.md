@@ -20,4 +20,11 @@ It has some rich featurs
 ### Usage:
 
 - Generate an image using your imagination
-```!ako amazing city in space```
+```
+!ako amazing city in space
+```
+- Black & White image to Colorful image
+```
+!col
+![Baby with a Teddy black and white picture](images/baby-with-teddy.jpg)
+```
