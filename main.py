@@ -2,7 +2,6 @@ import discord
 from decouple import config
 from discord.ext.commands import Bot
 from discord.ext import commands
-import asyncio
 
 from features import Colorizer, Text2Img, CatDogImage, WebCapture, BGRemove, photoSearch, meme, Help
 
